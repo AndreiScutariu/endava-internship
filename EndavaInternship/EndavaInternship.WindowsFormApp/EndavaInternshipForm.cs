@@ -19,13 +19,7 @@ namespace EndavaInternship.WindowsFormApp
                 var x = int.Parse(leftOperand.Text);
                 var y = int.Parse(rightOperand.Text);
 
-                if (y == 0)
-                {
-                    MessageBox.Show(@"Why? ...");
-                    return;
-                }
-
-                var result = (double) x / y;
+                var result = x / y;
 
                 Log("result: " + result);
             }
