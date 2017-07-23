@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EndavaInternship.WindowsFormApp
@@ -17,12 +18,36 @@ namespace EndavaInternship.WindowsFormApp
             {
                 Log("start");
 
+                submitButton.Enabled = false;
+
                 var x = int.Parse(leftOperand.Text);
                 var y = int.Parse(rightOperand.Text);
 
-                var result = ComputeResult(x, y);
+                var task = ComputeResult(x, y);
 
-                Log("result: " + result);
+                task.ContinueWith(t =>
+                        {
+                            if (t.IsFaulted)
+                            {
+                                t.Exception?.Handle(ex =>
+                                {
+                                    Log($"ex in task {ex.Message}");
+                                    return true;
+                                });
+
+                                return;
+                            }
+
+                            Log($"result {x} : {y}= " + t.Result);
+                        })
+                    .ContinueWith(t =>
+                        {
+                            Log("end. main thread is free now.");
+
+                            submitButton.Enabled = true;
+                            leftOperand.Text = string.Empty;
+                            rightOperand.Text = string.Empty;
+                        }, TaskScheduler.FromCurrentSynchronizationContext());
             }
             catch (FormatException ex)
             {
@@ -32,26 +57,29 @@ namespace EndavaInternship.WindowsFormApp
             {
                 Log("exception: " + ex.GetType());
             }
+            catch (AggregateException ex)
+            {
+                Log("exception: " + ex.GetType());
+            }
             finally
             {
-                Log("end. clear the inputs.");
-
-                leftOperand.Text = string.Empty;
-                rightOperand.Text = string.Empty;
+                Log("finally executed");
             }
         }
 
-        private static int ComputeResult(int x, int y)
+        private static Task<int> ComputeResult(int x, int y)
         {
-            //Do something ...
-            Thread.Sleep(TimeSpan.FromSeconds(5));
-
-            return x / y;
+            return Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                return x/y;
+            });
         }
 
         private void Log(string text)
         {
-            logsBox.AppendText(DateTime.Now.ToLongTimeString() + ": " + text + Environment.NewLine);
+            logsBox.AppendText(DateTime.Now.ToLongTimeString() + ": " + text +
+                               $" [thread_id: {Thread.CurrentThread.ManagedThreadId}]" + Environment.NewLine);
         }
     }
 }
