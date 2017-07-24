@@ -7,7 +7,8 @@ namespace EndavaInternship.ConsoleApp
 {
     internal class Program
     {
-        private const string UsersDropFolder = "d:\\UsersDropFolder\\New";
+        private const string UsersDropFolder = "d:\\DropFolder\\Users\\";
+        private const string AddressDropFolder = "d:\\DropFolder\\Address\\";
 
         private static readonly Random Random = new Random();
 
@@ -18,11 +19,13 @@ namespace EndavaInternship.ConsoleApp
 
         private static void GenerateRandomClientFiles()
         {
-            
             if (!Directory.Exists(UsersDropFolder))
                 Directory.CreateDirectory(UsersDropFolder);
 
-            Parallel.For(0, 20, i =>
+            if (!Directory.Exists(AddressDropFolder))
+                Directory.CreateDirectory(AddressDropFolder);
+
+            Parallel.For(0, 5000, i =>
             {
                 var client = new Client
                 {
@@ -34,28 +37,40 @@ namespace EndavaInternship.ConsoleApp
                     BirthDate = RandomDay()
                 };
 
-                if (i<10)
+                if (i<1000)
                 {
                     WriteToFileInvalidAddress(client);
+                    return;
                 }
 
-                if (i >= 10 && i < 17)
+                if (i >= 1000 && i < 1700)
                 {
                     WriteToFileInvalidEmail(client);
+                    return;
                 }
 
-                if (i >= 17 && i < 26)
+                if (i >= 1700 && i < 2600)
                 {
                     WriteToFileInvalidId(client);
+                    return;
                 }
 
-                if (i >= 26 && i < 30)
+                if (i >= 2600 && i < 3000)
                 {
                     WriteToFileInvalidDate(client);
+                    return;
                 }
 
                 WriteToFile(client);
+                CreateAddressFile(client);
             });
+        }
+
+        private static void CreateAddressFile(Client client)
+        {
+            var file = new StreamWriter(AddressDropFolder + client.AddressId);
+            file.WriteLine(RandomString(100));
+            file.Close();
         }
 
         private static void WriteToFileInvalidDate(Client client)
