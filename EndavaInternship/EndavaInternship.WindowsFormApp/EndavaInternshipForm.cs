@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EndavaInternship.WindowsFormApp
@@ -12,7 +11,7 @@ namespace EndavaInternship.WindowsFormApp
             InitializeComponent();
         }
 
-        private async void SubmitButtonOnClick(object sender, EventArgs e)
+        private void SubmitButtonOnClick(object sender, EventArgs e)
         {
             try
             {
@@ -23,10 +22,9 @@ namespace EndavaInternship.WindowsFormApp
                 var x = int.Parse(leftOperand.Text);
                 var y = int.Parse(rightOperand.Text);
 
-                var task = ComputeResultAsync(x, y);
-                var result = await task;
+                var result = ComputeResult(x, y);
 
-                Log($"result {x} : {y}= " + result);
+                Log($"result {x} : {y} = " + result);
 
                 Log("end. main thread is free now.");
             }
@@ -48,15 +46,10 @@ namespace EndavaInternship.WindowsFormApp
             }
         }
 
-        private Task<int> ComputeResultAsync(int x, int y)
+        private static int ComputeResult(int x, int y)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                Log($"computing... ");
-
-                Thread.Sleep(TimeSpan.FromSeconds(3));
-                return x/y;
-            });
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+            return x / y;
         }
 
         private void Log(string text)
