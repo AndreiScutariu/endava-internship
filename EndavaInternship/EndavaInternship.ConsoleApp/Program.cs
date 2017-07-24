@@ -10,10 +10,15 @@ namespace EndavaInternship.ConsoleApp
 
         private static void Main(string[] args)
         {
+            GenerateRandomClientFiles();
+        }
+
+        private static void GenerateRandomClientFiles()
+        {
             if (!Directory.Exists("d:\\UsersDropFolder"))
                 Directory.CreateDirectory("d:\\UsersDropFolder");
 
-            for (var i = 0; i < 20000; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var client = new Client
                 {
@@ -36,7 +41,7 @@ namespace EndavaInternship.ConsoleApp
             var file = new StreamWriter("d:\\UsersDropFolder\\" + client.Id);
 
             file.WriteLine(client.Name);
-            file.WriteLine(client.Email);
+            file.WriteLine();
             file.WriteLine(client.BirthDate.Year + " " + client.BirthDate.Month + " " + client.BirthDate.Day);
             file.WriteLine(client.AddressId);
             file.WriteLine(client.Description);

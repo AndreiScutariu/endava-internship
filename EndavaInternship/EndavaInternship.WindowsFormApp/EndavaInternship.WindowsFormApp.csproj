@@ -45,12 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs" />
     <Compile Include="EndavaInternshipForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EndavaInternshipForm.Designer.cs">
       <DependentUpon>EndavaInternshipForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileUserDetailsProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EndavaInternshipForm.resx">

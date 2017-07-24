@@ -1,57 +1,68 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EndavaInternship.WindowsFormApp
 {
+    internal delegate void SetTextCallback(string text);
+
     public partial class EndavaInternshipForm : Form
     {
+        private readonly FileUserDetailsProcessor _fileProcessor;
+        private readonly CancellationTokenSource _cancellationTokenSource;
+
         public EndavaInternshipForm()
         {
             InitializeComponent();
+
+            _cancellationTokenSource = new CancellationTokenSource();
+            _fileProcessor = new FileUserDetailsProcessor(Log, _cancellationTokenSource);
         }
 
-        private void SubmitButtonOnClick(object sender, EventArgs e)
+        private async void SubmitButtonOnClick(object sender, EventArgs e)
         {
+            Log("start...");
+            var path = directoryPathInput.Text;
+
             try
             {
-                Log("start");
+                submitButton.Enabled = false;
 
-                var x = int.Parse(leftOperand.Text);
-                var y = int.Parse(rightOperand.Text);
+                await Task.WhenAll(_fileProcessor.Proces(path));
 
-                var result = ComputeResult(x, y);
-
-                Log("result: " + result);
+                Log("end...");
             }
-            catch (FormatException ex)
+            catch (Exception ex)
             {
-                Log("exception: " + ex.GetType());
-            }
-            catch (DivideByZeroException ex)
-            {
-                Log("exception: " + ex.GetType());
+                Log("Exception: " + ex.GetType());
             }
             finally
             {
-                Log("end. clear the inputs.");
-
-                leftOperand.Text = string.Empty;
-                rightOperand.Text = string.Empty;
+                Log("finally...");
+                submitButton.Enabled = true;
+                directoryPathInput.Text = string.Empty;
             }
-        }
-
-        private static int ComputeResult(int x, int y)
-        {
-            //Do something ...
-            Thread.Sleep(TimeSpan.FromSeconds(5));
-
-            return x / y;
         }
 
         private void Log(string text)
         {
-            logsBox.AppendText(DateTime.Now.ToLongTimeString() + ": " + text + Environment.NewLine);
+            var logText = DateTime.Now.ToLongTimeString() + ": " + text +
+                          $"[T_ID: {Thread.CurrentThread.ManagedThreadId}]" + Environment.NewLine;
+
+            logsBox.AppendText(logText);
+        }
+
+        private void stopOperation_Click(object sender, EventArgs e)
+        {
+            _cancellationTokenSource.Cancel();
+        }
+
+        private void countButton_Click(object sender, EventArgs e)
+        {
+            var path = directoryPathInput.Text;
+
+            _fileProcessor.Count(path);
         }
     }
 }
