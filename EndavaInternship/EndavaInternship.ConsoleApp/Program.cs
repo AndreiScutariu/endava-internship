@@ -7,8 +7,8 @@ namespace EndavaInternship.ConsoleApp
 {
     internal class Program
     {
-        private const string UsersDropFolder = "d:\\DropFolder\\Users\\";
-        private const string AddressDropFolder = "d:\\DropFolder\\Address\\";
+        private const string UsersDropFolder = "d:\\DropFolderComplex\\Users\\";
+        private const string AddressDropFolder = "d:\\DropFolderComplex\\Address\\";
 
         private static readonly Random Random = new Random();
 
@@ -37,25 +37,25 @@ namespace EndavaInternship.ConsoleApp
                     BirthDate = RandomDay()
                 };
 
-                if (i<1000)
+                if (i<10)
                 {
                     WriteToFileInvalidAddress(client);
                     return;
                 }
 
-                if (i >= 1000 && i < 1700)
+                if (i >= 10 && i < 17)
                 {
                     WriteToFileInvalidEmail(client);
                     return;
                 }
 
-                if (i >= 1700 && i < 2600)
+                if (i >= 17 && i < 26)
                 {
                     WriteToFileInvalidId(client);
                     return;
                 }
 
-                if (i >= 2600 && i < 3000)
+                if (i >= 26 && i < 30)
                 {
                     WriteToFileInvalidDate(client);
                     return;
