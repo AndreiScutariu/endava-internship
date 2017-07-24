@@ -1,11 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EndavaInternship.ConsoleApp
 {
     internal class Program
     {
+        private const string UsersDropFolder = "d:\\UsersDropFolder\\New";
+
         private static readonly Random Random = new Random();
 
         private static void Main(string[] args)
@@ -15,10 +18,11 @@ namespace EndavaInternship.ConsoleApp
 
         private static void GenerateRandomClientFiles()
         {
-            if (!Directory.Exists("d:\\UsersDropFolder"))
-                Directory.CreateDirectory("d:\\UsersDropFolder");
+            
+            if (!Directory.Exists(UsersDropFolder))
+                Directory.CreateDirectory(UsersDropFolder);
 
-            for (var i = 0; i < 10; i++)
+            Parallel.For(0, 20, i =>
             {
                 var client = new Client
                 {
@@ -30,18 +34,88 @@ namespace EndavaInternship.ConsoleApp
                     BirthDate = RandomDay()
                 };
 
-                WriteToFile(client);
+                if (i<10)
+                {
+                    WriteToFileInvalidAddress(client);
+                }
 
-                Console.WriteLine(i);
-            }
+                if (i >= 10 && i < 17)
+                {
+                    WriteToFileInvalidEmail(client);
+                }
+
+                if (i >= 17 && i < 26)
+                {
+                    WriteToFileInvalidId(client);
+                }
+
+                if (i >= 26 && i < 30)
+                {
+                    WriteToFileInvalidDate(client);
+                }
+
+                WriteToFile(client);
+            });
+        }
+
+        private static void WriteToFileInvalidDate(Client client)
+        {
+            var file = new StreamWriter(UsersDropFolder + client.Id);
+
+            file.WriteLine(client.Name);
+            file.WriteLine(client.Email);
+            file.WriteLine(client.BirthDate.Year + " " + client.BirthDate.Month + " " );
+            file.WriteLine(client.AddressId);
+            file.WriteLine(client.Description);
+
+            file.Close();
+        }
+
+        private static void WriteToFileInvalidId(Client client)
+        {
+            var file = new StreamWriter(UsersDropFolder + client.Id + "1");
+
+            file.WriteLine(client.Name);
+            file.WriteLine(client.Email);
+            file.WriteLine(client.BirthDate.Year + " " + client.BirthDate.Month + " " + client.BirthDate.Day);
+            file.WriteLine(client.AddressId);
+            file.WriteLine(client.Description);
+
+            file.Close();
+        }
+
+        private static void WriteToFileInvalidEmail(Client client)
+        {
+            var file = new StreamWriter(UsersDropFolder + client.Id);
+
+            file.WriteLine(client.Name);
+            file.WriteLine();
+            file.WriteLine(client.BirthDate.Year + " " + client.BirthDate.Month + " " + client.BirthDate.Day);
+            file.WriteLine(client.AddressId);
+            file.WriteLine(client.Description);
+
+            file.Close();
+        }
+
+        private static void WriteToFileInvalidAddress(Client client)
+        {
+            var file = new StreamWriter(UsersDropFolder + client.Id);
+
+            file.WriteLine(client.Name);
+            file.WriteLine(client.Email);
+            file.WriteLine(client.BirthDate.Year + " " + client.BirthDate.Month + " " + client.BirthDate.Day);
+            file.WriteLine(client.AddressId + "123");
+            file.WriteLine(client.Description);
+
+            file.Close();
         }
 
         private static void WriteToFile(Client client)
         {
-            var file = new StreamWriter("d:\\UsersDropFolder\\" + client.Id);
+            var file = new StreamWriter(UsersDropFolder + client.Id);
 
             file.WriteLine(client.Name);
-            file.WriteLine();
+            file.WriteLine(client.Email);
             file.WriteLine(client.BirthDate.Year + " " + client.BirthDate.Month + " " + client.BirthDate.Day);
             file.WriteLine(client.AddressId);
             file.WriteLine(client.Description);
@@ -59,7 +133,7 @@ namespace EndavaInternship.ConsoleApp
 
         private static string RandomString(int length)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
 
             var randomString = new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[Random.Next(s.Length)]).ToArray());
