@@ -12,7 +12,7 @@ namespace EndavaInternship.WindowsFormApp
             InitializeComponent();
         }
 
-        private void SubmitButtonOnClick(object sender, EventArgs e)
+        private async void SubmitButtonOnClick(object sender, EventArgs e)
         {
             try
             {
@@ -23,31 +23,12 @@ namespace EndavaInternship.WindowsFormApp
                 var x = int.Parse(leftOperand.Text);
                 var y = int.Parse(rightOperand.Text);
 
-                var task = ComputeResult(x, y);
+                var task = ComputeResultAsync(x, y);
+                var result = await task;
 
-                task.ContinueWith(t =>
-                        {
-                            if (t.IsFaulted)
-                            {
-                                t.Exception?.Handle(ex =>
-                                {
-                                    Log($"ex in task {ex.Message}");
-                                    return true;
-                                });
+                Log($"result {x} : {y}= " + result);
 
-                                return;
-                            }
-
-                            Log($"result {x} : {y}= " + t.Result);
-                        })
-                    .ContinueWith(t =>
-                        {
-                            Log("end. main thread is free now.");
-
-                            submitButton.Enabled = true;
-                            leftOperand.Text = string.Empty;
-                            rightOperand.Text = string.Empty;
-                        }, TaskScheduler.FromCurrentSynchronizationContext());
+                Log("end. main thread is free now.");
             }
             catch (FormatException ex)
             {
@@ -57,21 +38,23 @@ namespace EndavaInternship.WindowsFormApp
             {
                 Log("exception: " + ex.GetType());
             }
-            catch (AggregateException ex)
-            {
-                Log("exception: " + ex.GetType());
-            }
             finally
             {
                 Log("finally executed");
+
+                submitButton.Enabled = true;
+                leftOperand.Text = string.Empty;
+                rightOperand.Text = string.Empty;
             }
         }
 
-        private static Task<int> ComputeResult(int x, int y)
+        private Task<int> ComputeResultAsync(int x, int y)
         {
             return Task.Factory.StartNew(() =>
             {
-                Thread.Sleep(TimeSpan.FromSeconds(1));
+                Log($"computing... ");
+
+                Thread.Sleep(TimeSpan.FromSeconds(3));
                 return x/y;
             });
         }
