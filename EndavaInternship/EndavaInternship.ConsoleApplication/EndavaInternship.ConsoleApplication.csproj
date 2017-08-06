@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{73F311FA-0FDF-481B-BE4E-0A05AA19F772}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EndavaInternship.ConsoleApplication</RootNamespace>
+    <AssemblyName>EndavaInternship.ConsoleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EndavaInternship.AreaCalculator\EndavaInternship.AreaCalculator.csproj">
+      <Project>{1a2d69aa-32e7-44e9-b4e4-9347915f3cd7}</Project>
+      <Name>EndavaInternship.AreaCalculator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EndavaInternship.DependencyInversion\EndavaInternship.DependencyInversion.csproj">
+      <Project>{05e968f6-c04e-42b7-bcc0-0e38cb1c42ee}</Project>
+      <Name>EndavaInternship.DependencyInversion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EndavaInternship.InterfaceSegregation\EndavaInternship.InterfaceSegregation.csproj">
+      <Project>{5d8433b5-64b4-4d30-8ce8-d1c302afec98}</Project>
+      <Name>EndavaInternship.InterfaceSegregation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EndavaInternship.Liskov\EndavaInternship.Liskov.csproj">
+      <Project>{6cba69e5-095f-48bb-9c79-088d65ccbe05}</Project>
+      <Name>EndavaInternship.Liskov</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EndavaInternship.OpenClosed\EndavaInternship.OpenClosed.csproj">
+      <Project>{d7ae5c7f-f029-48b7-b6af-1451a1b20d31}</Project>
+      <Name>EndavaInternship.OpenClosed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EndavaInternship.Srp\EndavaInternship.Srp.csproj">
+      <Project>{37013300-2c75-45e5-b1b7-c87bb57534aa}</Project>
+      <Name>EndavaInternship.Srp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
