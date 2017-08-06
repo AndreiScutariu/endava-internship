@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EndavaInternship.Liskov
+namespace EndavaInternship.Liskov.Exemple2
 {
     public class OldAndStupidRectangle
     {

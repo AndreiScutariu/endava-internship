@@ -1,7 +1,8 @@
 ﻿using System;
+using EndavaInternship.Liskov.Exemple2;
 using NUnit.Framework;
 
-namespace EndavaInternship.Liskov.UnitTests
+namespace EndavaInternship.Liskov.UnitTests.Exemple2
 {
     [TestFixture]
     public class NewRectangleAreaUnitTests

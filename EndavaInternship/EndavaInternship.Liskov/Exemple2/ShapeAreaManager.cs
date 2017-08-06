@@ -1,4 +1,4 @@
-﻿namespace EndavaInternship.Liskov
+﻿namespace EndavaInternship.Liskov.Exemple2
 {
     public class ShapeAreaManager
     {

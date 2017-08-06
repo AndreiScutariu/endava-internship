@@ -40,9 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OldAndStupidRectangle.cs" />
+    <Compile Include="Exemple1\AreaCalculator.cs" />
+    <Compile Include="Exemple2\NewAndSmartRectangle.cs" />
+    <Compile Include="Exemple2\OldAndStupidRectangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShapeAreaManager.cs" />
+    <Compile Include="Exemple1\Rectangle.cs" />
+    <Compile Include="Exemple2\ShapeAreaManager.cs" />
+    <Compile Include="Exemple1\Square.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
