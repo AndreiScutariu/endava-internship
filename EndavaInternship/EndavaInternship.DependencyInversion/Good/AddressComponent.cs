@@ -12,9 +12,9 @@ namespace EndavaInternship.DependencyInversion.Good
             _consoleLogger = consoleLogger;
         }
 
-        public void ChangePostalCode(Guid newGuid, string s)
+        public void ChangePostalCode(Guid id, string postalCode)
         {
-            _consoleLogger.WriteLog("change postal code");
+            _consoleLogger.WriteLog($"user {id} changed postal code");
         }
     }
 }

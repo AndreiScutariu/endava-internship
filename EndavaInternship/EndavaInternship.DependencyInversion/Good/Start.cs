@@ -5,7 +5,7 @@ namespace EndavaInternship.DependencyInversion.Good
 {
     public class Program
     {
-        public static void Start()
+        public static void Start(string[] args)
         {
             var accountComponent = new AccountComponent(new SecurityService(new ConsoleLogger()));
             var addressComponent = new AddressComponent(new ConsoleLogger());
