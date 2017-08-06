@@ -12,7 +12,7 @@ namespace EndavaInternship.Liskov.UnitTests
         {
             Assert.Throws<Exception>(() =>
             {
-                var shape = new NewAndSmartRectangle(lenght, width);
+                var shape = new OldAndStupidRectangle(lenght, width);
 
                 ShapeAreaManager.CalculateArea(shape);
             });
@@ -24,7 +24,7 @@ namespace EndavaInternship.Liskov.UnitTests
         [TestCase(1, 2, 2)]
         public void ShouldCalculateCorectAreaFor(int lenght, int width, int expectedArea)
         {
-            var shape = new NewAndSmartRectangle(lenght, width);
+            var shape = new OldAndStupidRectangle(lenght, width);
 
             var actualArea = ShapeAreaManager.CalculateArea(shape);
             Assert.AreEqual(expectedArea, actualArea);
@@ -37,7 +37,7 @@ namespace EndavaInternship.Liskov.UnitTests
         {
             Assert.Throws<InvalidOperationException>(() =>
             {
-                var shape = new NewAndSmartRectangle(lenght, width);
+                var shape = new OldAndStupidRectangle(lenght, width);
 
                 ShapeAreaManager.CalculateArea(shape);
             }, "Something is wrong!");
