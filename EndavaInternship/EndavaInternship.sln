@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.ConsoleApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.WindowsFormApp", "EndavaInternship.WindowsFormApp\EndavaInternship.WindowsFormApp.csproj", "{AF274215-BD4E-46B6-A8E8-8701703E63E3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AsyncAwait", "AsyncAwait", "{6A2902FF-D7F1-4A19-A490-9E6DAA486F57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solid", "Solid", "{01C814D7-6C32-4300-BD1D-64C7B012AA40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DDD25021-97D7-47EE-BEDA-EA35BAF2236D} = {6A2902FF-D7F1-4A19-A490-9E6DAA486F57}
+		{AF274215-BD4E-46B6-A8E8-8701703E63E3} = {6A2902FF-D7F1-4A19-A490-9E6DAA486F57}
 	EndGlobalSection
 EndGlobal
