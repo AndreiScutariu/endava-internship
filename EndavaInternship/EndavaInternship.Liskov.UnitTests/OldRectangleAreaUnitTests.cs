@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace EndavaInternship.Liskov.UnitTests
 {
     [TestFixture]
-    public class RectangleAreaUnitTests
+    public class OldRectangleAreaUnitTests
     {
         [TestCase(-1, 0)]
         [TestCase(0, -1)]
@@ -12,11 +12,7 @@ namespace EndavaInternship.Liskov.UnitTests
         {
             Assert.Throws<Exception>(() =>
             {
-                var shape = new OldAndStupidRectangle
-                {
-                    Lenght = lenght,
-                    Width = width
-                };
+                var shape = new NewAndSmartRectangle(lenght, width);
 
                 ShapeAreaManager.CalculateArea(shape);
             });
@@ -25,13 +21,10 @@ namespace EndavaInternship.Liskov.UnitTests
         [TestCase(2, 3, 6)]
         [TestCase(3, 3, 9)]
         [TestCase(3, 2, 6)]
+        [TestCase(1, 2, 2)]
         public void ShouldCalculateCorectAreaFor(int lenght, int width, int expectedArea)
         {
-            var shape = new OldAndStupidRectangle
-            {
-                Lenght = lenght,
-                Width = width
-            };
+            var shape = new NewAndSmartRectangle(lenght, width);
 
             var actualArea = ShapeAreaManager.CalculateArea(shape);
             Assert.AreEqual(expectedArea, actualArea);
@@ -39,18 +32,15 @@ namespace EndavaInternship.Liskov.UnitTests
 
         [TestCase(5, 0)]
         [TestCase(0, 5)]
+        [TestCase(1, 1)]
         public void ShouldHaveInvalidPostconditionsFor(int lenght, int width)
         {
             Assert.Throws<InvalidOperationException>(() =>
             {
-                var shape = new OldAndStupidRectangle
-                {
-                    Lenght = lenght,
-                    Width = width
-                };
+                var shape = new NewAndSmartRectangle(lenght, width);
 
                 ShapeAreaManager.CalculateArea(shape);
-            });
+            }, "Something is wrong!");
         }
     }
 }

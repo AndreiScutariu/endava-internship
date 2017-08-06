@@ -2,19 +2,19 @@
 
 namespace EndavaInternship.Liskov
 {
-    public class OldAndStupidRectangle
+    public class NewAndSmartRectangle : OldAndStupidRectangle
     {
-        public OldAndStupidRectangle(int lenght, int width)
+        public NewAndSmartRectangle(double lenght, double width) : base((int) lenght, (int) width)
         {
             Lenght = lenght;
             Width = width;
         }
 
-        public int Lenght { get; set; }
+        public new double Lenght { get; set; }
 
-        public int Width { get; set; }
+        public new double Width { get; set; }
 
-        public virtual double Area()
+        public override double Area()
         {
             if (Lenght < 0)
                 throw new Exception("Lenght is not valid!");
@@ -22,7 +22,13 @@ namespace EndavaInternship.Liskov
             if (Width < 0)
                 throw new Exception("Width is not valid!");
 
+            if (Width == Lenght)
+                throw new Exception("This is a Square!");
+
             var area = CalculateArea();
+
+            if ((area > 1) && (area < 1.9d))
+                throw new InvalidOperationException("Useless area!");
 
             if (area <= 1)
                 throw new InvalidOperationException("Something is wrong!");
@@ -32,12 +38,7 @@ namespace EndavaInternship.Liskov
 
         private double CalculateArea()
         {
-            var sum = 0d;
-
-            for (var i = 0; i < Width; i++)
-                sum += Lenght;
-
-            return sum;
+            return Width*Lenght;
         }
     }
 }

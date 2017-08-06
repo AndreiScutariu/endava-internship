@@ -2,7 +2,7 @@
 {
     public class ShapeAreaManager
     {
-        public static int CalculateArea(OldAndStupidRectangle shape)
+        public static double CalculateArea(OldAndStupidRectangle shape)
         {
             return shape.Area();
         }

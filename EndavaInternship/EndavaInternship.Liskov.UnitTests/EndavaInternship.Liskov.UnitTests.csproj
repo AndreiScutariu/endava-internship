@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RectangleAreaUnitTests.cs" />
+    <Compile Include="NewRectangleAreaUnitTests.cs" />
+    <Compile Include="OldRectangleAreaUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
