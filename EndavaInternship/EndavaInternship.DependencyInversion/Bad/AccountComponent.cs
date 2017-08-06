@@ -4,7 +4,7 @@ namespace EndavaInternship.DependencyInversion.Bad
 {
     public class AccountComponent
     {
-        private readonly ISecurityService _securityService;
+        private readonly SecurityService _securityService;
 
         public AccountComponent()
         {

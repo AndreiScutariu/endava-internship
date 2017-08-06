@@ -3,9 +3,9 @@ using EndavaInternship.OpenClosed.Good;
 
 namespace EndavaInternship.DependencyInversion.Bad
 {
-    public class SecurityService : ISecurityService
+    public class SecurityService
     {
-        private readonly ILogger _logger;
+        private readonly ConsoleLogger _logger;
 
         public SecurityService()
         {
