@@ -33,6 +33,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.Web", "End
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.Api", "EndavaInternship.Api\EndavaInternship.Api.csproj", "{9555A328-CD0C-43F6-B384-053081DD8E9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.Api.BusinessLogic", "EndavaInternship.Api.BusinessLogic\EndavaInternship.Api.BusinessLogic.csproj", "{33E75BFE-18CF-491B-82CE-4FFC02089566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.Api.Persistence", "EndavaInternship.Api.Persistence\EndavaInternship.Api.Persistence.csproj", "{3B27A1E6-6928-4F24-B875-9958D8950E7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.Web.Api.Client", "EndavaInternship.Api.Client\EndavaInternship.Web.Api.Client.csproj", "{11848CA0-1385-4EBC-BCBC-49A91F5D6890}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.Api.Contracts", "EndavaInternship.Api.Contracts\EndavaInternship.Api.Contracts.csproj", "{142E82EE-FB9E-4AD5-A9BF-E3617E2519E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +95,22 @@ Global
 		{9555A328-CD0C-43F6-B384-053081DD8E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9555A328-CD0C-43F6-B384-053081DD8E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9555A328-CD0C-43F6-B384-053081DD8E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E75BFE-18CF-491B-82CE-4FFC02089566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E75BFE-18CF-491B-82CE-4FFC02089566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E75BFE-18CF-491B-82CE-4FFC02089566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E75BFE-18CF-491B-82CE-4FFC02089566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B27A1E6-6928-4F24-B875-9958D8950E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B27A1E6-6928-4F24-B875-9958D8950E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B27A1E6-6928-4F24-B875-9958D8950E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B27A1E6-6928-4F24-B875-9958D8950E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11848CA0-1385-4EBC-BCBC-49A91F5D6890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11848CA0-1385-4EBC-BCBC-49A91F5D6890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11848CA0-1385-4EBC-BCBC-49A91F5D6890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11848CA0-1385-4EBC-BCBC-49A91F5D6890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{142E82EE-FB9E-4AD5-A9BF-E3617E2519E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{142E82EE-FB9E-4AD5-A9BF-E3617E2519E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{142E82EE-FB9E-4AD5-A9BF-E3617E2519E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{142E82EE-FB9E-4AD5-A9BF-E3617E2519E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,5 +128,9 @@ Global
 		{83319B68-6CDC-4B12-B3F1-E8B2B80BD159} = {01C814D7-6C32-4300-BD1D-64C7B012AA40}
 		{9C550CC2-BE62-430F-889E-50950BF20142} = {4A41972D-2DC5-4B34-9509-E8F5502F3363}
 		{9555A328-CD0C-43F6-B384-053081DD8E9D} = {4A41972D-2DC5-4B34-9509-E8F5502F3363}
+		{33E75BFE-18CF-491B-82CE-4FFC02089566} = {4A41972D-2DC5-4B34-9509-E8F5502F3363}
+		{3B27A1E6-6928-4F24-B875-9958D8950E7E} = {4A41972D-2DC5-4B34-9509-E8F5502F3363}
+		{11848CA0-1385-4EBC-BCBC-49A91F5D6890} = {4A41972D-2DC5-4B34-9509-E8F5502F3363}
+		{142E82EE-FB9E-4AD5-A9BF-E3617E2519E9} = {4A41972D-2DC5-4B34-9509-E8F5502F3363}
 	EndGlobalSection
 EndGlobal

@@ -1,36 +1,49 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
-using EndavaInternship.Api.Models;
+using EndavaInternship.Api.BusinessLogic.BankDetails;
+using EndavaInternship.Api.Contracts;
+using EndavaInternship.Api.Persistence;
 
 namespace EndavaInternship.Api.Controllers
 {
     [RoutePrefix("bankdetails")]
     public class BankDetailsController : ApiController
     {
-        [HttpGet]
-        [Route("")]
-        public IEnumerable<UserBankDetails> Get()
+        private readonly BankDetailsHandler _bankDetailsHandler;
+
+        public BankDetailsController()
         {
-            return null;
+            _bankDetailsHandler = new BankDetailsHandler(new BankDetailsRepository());
         }
 
         [HttpGet]
         [Route("{id}")]
-        public UserBankDetails Get(int id)
+        public BankDetails Get(string id)
         {
-            return null;
+            return _bankDetailsHandler.GetBankDetails(id);
         }
 
         [HttpPost]
         [Route("")]
-        public void Post([FromBody] UserBankDetails userBankDetails)
+        public HttpResponseMessage Post([FromBody] CreateUserBankDetailsRequest createUserBankDetailsRequest)
         {
-        }
+            try
+            {
+                _bankDetailsHandler.AddBankDetails(createUserBankDetailsRequest.UserId, new BankDetails
+                {
+                    CardNumber = createUserBankDetailsRequest.CardNumber,
+                    FullName = createUserBankDetailsRequest.FullName,
+                    SecurityCode = createUserBankDetailsRequest.SecurityCode
+                });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
 
-        [HttpDelete]
-        [Route("{id}")]
-        public void Delete(string id)
-        {
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
     }
 }

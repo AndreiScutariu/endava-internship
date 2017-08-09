@@ -21,14 +21,14 @@ namespace EndavaInternship.Api
                     var rootUrl = ConfigurationManager.AppSettings["RootUrl"];
 
                     if (!string.IsNullOrEmpty(rootUrl))
-                    {
                         c.RootUrl(req => rootUrl);
-                    }
 
                     c.SingleApiVersion("v1", "EndavaInternship API");
                 }).EnableSwaggerUi();
 
-            WebApiConfig.Register(configuration);
+            configuration.RegisterDefaultRoutes();
+
+            configuration.RemoveXmlFormatter();
 
             app.UseWebApi(configuration);
         }

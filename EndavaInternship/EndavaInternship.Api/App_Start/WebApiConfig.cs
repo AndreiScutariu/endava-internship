@@ -6,7 +6,7 @@ namespace EndavaInternship.Api
 {
     public static class WebApiConfig
     {
-        public static void Register(HttpConfiguration configuration)
+        public static void RegisterDefaultRoutes(this HttpConfiguration configuration)
         {
             configuration.MapHttpAttributeRoutes();
 
@@ -17,7 +17,6 @@ namespace EndavaInternship.Api
                 null,
                 new RedirectHandler(message => message.RequestUri.ToString().TrimEnd('/'), "swagger/ui/index"));
 
-            configuration.RemoveXmlFormatter();
         }
 
         public static void RemoveXmlFormatter(this HttpConfiguration configuration)
