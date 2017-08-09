@@ -13,21 +13,7 @@ namespace EndavaInternship.Web.Controllers
         [HttpPost]
         public ActionResult Create(UserBankDetailsModel model)
         {
-            return RedirectToAction("Index");
-        }
-    }
-
-    public class HomeController : Controller
-    {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(UserBankDetailsModel model)
-        {
-            return RedirectToAction("Index");
+            return RedirectToAction("List");
         }
     }
 }
