@@ -6,28 +6,21 @@ namespace EndavaInternship.Api
 {
     public static class WebApiConfig
     {
-        public static void Register(HttpConfiguration config)
+        public static void Register(HttpConfiguration configuration)
         {
-            // Web API routes
-            config.MapHttpAttributeRoutes();
+            configuration.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                "EndavaInternship API",
+            configuration.Routes.MapHttpRoute(
+                "Swagger UI",
                 "",
                 null,
                 null,
                 new RedirectHandler(message => message.RequestUri.ToString().TrimEnd('/'), "swagger/ui/index"));
 
-            config.Routes.MapHttpRoute(
-                "DefaultApi",
-                "api/{controller}/{id}",
-                new { id = RouteParameter.Optional }
-            );
-
-            RemoveXmlFormatter(config);
+            configuration.RemoveXmlFormatter();
         }
 
-        private static void RemoveXmlFormatter(HttpConfiguration configuration)
+        public static void RemoveXmlFormatter(this HttpConfiguration configuration)
         {
             var appXmlType =
                 configuration.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(
