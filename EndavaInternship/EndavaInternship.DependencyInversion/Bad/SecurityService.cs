@@ -5,11 +5,11 @@ namespace EndavaInternship.DependencyInversion.Bad
 {
     public class SecurityService
     {
-        private readonly ConsoleLogger _logger;
+        private readonly DatabaseLogger _logger;
 
         public SecurityService()
         {
-            _logger = new ConsoleLogger();
+            _logger = new DatabaseLogger();
         }
 
         public void ChangeUsersPassword(Guid userId, string newPassword)

@@ -10,7 +10,7 @@ namespace EndavaInternship.Liskov.UnitTests.Exemple1
         [TestCase(2, 2, 4)]
         public void ShouldCalculateCorrectAreaFor(int lenght, int widht, int expectedResult)
         {
-            var shape = new Rectangle();
+            var shape = new Square();
             shape.Lenght = lenght;
             shape.Width = widht;
 

@@ -43,11 +43,6 @@
     <Compile Include="Bad\AccountComponent.cs" />
     <Compile Include="Bad\SecurityService.cs" />
     <Compile Include="Bad\Start.cs" />
-    <Compile Include="Good\AccountComponent.cs" />
-    <Compile Include="Good\AddressComponent.cs" />
-    <Compile Include="Good\ISecurityService.cs" />
-    <Compile Include="Good\SecurityService.cs" />
-    <Compile Include="Good\Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

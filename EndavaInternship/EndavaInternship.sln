@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.AreaCalcul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndavaInternship.Liskov.UnitTests", "EndavaInternship.Liskov.UnitTests\EndavaInternship.Liskov.UnitTests.csproj", "{83319B68-6CDC-4B12-B3F1-E8B2B80BD159}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{4A41972D-2DC5-4B34-9509-E8F5502F3363}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
