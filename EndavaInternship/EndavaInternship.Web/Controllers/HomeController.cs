@@ -8,7 +8,7 @@ namespace EndavaInternship.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private static readonly Dictionary<string, UserModel> Users = new Dictionary<string, UserModel>();
+        public static readonly Dictionary<string, UserModel> Users = new Dictionary<string, UserModel>();
 
         public ActionResult Index()
         {

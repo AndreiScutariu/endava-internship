@@ -20,9 +20,10 @@ namespace EndavaInternship.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public BankDetails Get(string id)
+        public HttpResponseMessage Get(string id)
         {
-            return _bankDetailsHandler.GetBankDetails(id);
+            var bankDetails = _bankDetailsHandler.GetBankDetails(id);
+            return Request.CreateResponse(HttpStatusCode.OK, bankDetails);
         }
 
         [HttpPost]

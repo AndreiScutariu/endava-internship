@@ -196,6 +196,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EndavaInternship.Api.Client\EndavaInternship.Web.Api.Client.csproj">
+      <Project>{11848CA0-1385-4EBC-BCBC-49A91F5D6890}</Project>
+      <Name>EndavaInternship.Web.Api.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EndavaInternship.Api.Contracts\EndavaInternship.Api.Contracts.csproj">
+      <Project>{142E82EE-FB9E-4AD5-A9BF-E3617E2519E9}</Project>
+      <Name>EndavaInternship.Api.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

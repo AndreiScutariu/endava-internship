@@ -29,6 +29,8 @@ namespace EndavaInternship.Api.Client
             using (var client = new HttpClient())
             {
                 var result = await client.GetAsync(uri);
+                result.EnsureSuccessStatusCode();
+
                 var content = await result.Content.ReadAsStringAsync();
                 return content.To<BankDetailsResponse>();
             }
