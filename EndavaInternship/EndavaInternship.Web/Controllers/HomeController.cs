@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using EndavaInternship.Web.Models;
 
 namespace EndavaInternship.Web.Controllers
 {
@@ -21,6 +22,12 @@ namespace EndavaInternship.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(UserBankDetailsModel model)
+        {
+            return RedirectToAction("Index");
         }
     }
 }
