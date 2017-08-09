@@ -4,7 +4,7 @@
     {
         private static void Main(string[] args)
         {
-            DependencyInversion.Good.Program.Start(args);
+            //DependencyInversion.Good.Program.Start(args);
         }
     }
 }
