@@ -3,24 +3,24 @@ using EndavaInternship.Web.Models;
 
 namespace EndavaInternship.Web.Controllers
 {
-    public class HomeController : Controller
+    public class BankDetailsController : Controller
     {
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Create(UserBankDetailsModel model)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return RedirectToAction("Index");
         }
+    }
 
-        public ActionResult Contact()
+    public class HomeController : Controller
+    {
+        public ActionResult Index()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
