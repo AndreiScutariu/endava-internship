@@ -1,9 +1,7 @@
-﻿namespace EndavaInternship.Api.Models
+﻿namespace EndavaInternship.Api.BusinessLogicLayer
 {
-    public class UserBankDetails
+    public class BankDetails
     {
-        public string UserId { get; set; }
-
         public string FullName { get; set; }
 
         public string CardNumber { get; set; }

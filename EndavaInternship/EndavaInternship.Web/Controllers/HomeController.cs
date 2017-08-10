@@ -1,26 +1,34 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using EndavaInternship.Web.Models;
 
 namespace EndavaInternship.Web.Controllers
 {
     public class HomeController : Controller
     {
+        public static readonly Dictionary<string, UserModel> Users = new Dictionary<string, UserModel>();
+
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            var userModels = Users.Select(x => x.Value).ToList();
+            ViewData["Users"] = userModels;
 
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Create(UserModel model)
         {
-            ViewBag.Message = "Your contact page.";
+            model.UserId = Guid.NewGuid().ToString();
+            Users.Add(model.UserId, model);
+            return RedirectToAction("Index");
+        }
 
-            return View();
+        public ActionResult Error()
+        {
+            return View("Error");
         }
     }
 }

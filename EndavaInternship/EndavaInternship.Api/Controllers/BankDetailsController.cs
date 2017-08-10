@@ -1,36 +1,67 @@
-﻿using System.Collections.Generic;
+﻿using System.Net;
+using System.Net.Http;
 using System.Web.Http;
-using EndavaInternship.Api.Models;
+using EndavaInternship.Api.BusinessLogicLayer;
+using EndavaInternship.Api.BusinessLogicLayer.Exceptions;
+using EndavaInternship.Api.Contract;
+using EndavaInternship.Api.Dal;
 
 namespace EndavaInternship.Api.Controllers
 {
     [RoutePrefix("bankdetails")]
     public class BankDetailsController : ApiController
     {
-        [HttpGet]
-        [Route("")]
-        public IEnumerable<UserBankDetails> Get()
+        private readonly BankDetailsHanlder _bankDetailsHanlder;
+
+        public BankDetailsController()
         {
-            return null;
+            var session = NHibernateSessionFactoryInstance.SessionFactory.OpenSession();
+            _bankDetailsHanlder = new BankDetailsHanlder(new BankDetailsRepository(session));
         }
 
         [HttpGet]
         [Route("{id}")]
-        public UserBankDetails Get(int id)
+        public HttpResponseMessage Get(string id)
         {
-            return null;
+            try
+            {
+                var details = _bankDetailsHanlder.Get(id);
+                return Request.CreateResponse(HttpStatusCode.Found, new UserBankDetailsResponse
+                {
+                    SecurityCode = details.SecurityCode,
+                    FullName = details.FullName,
+                    CardNumber = details.CardNumber
+                });
+            }
+            catch (ResourceNotFoundException)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
         }
 
         [HttpPost]
         [Route("")]
-        public void Post([FromBody] UserBankDetails userBankDetails)
+        public HttpResponseMessage Post([FromBody] CreateUserBankDetailsRequest createUserBankDetailsRequest)
         {
-        }
+            try
+            {
+                _bankDetailsHanlder.Add(createUserBankDetailsRequest.UserId, new BankDetails
+                {
+                    CardNumber = createUserBankDetailsRequest.CardNumber,
+                    SecurityCode = createUserBankDetailsRequest.SecurityCode,
+                    FullName = createUserBankDetailsRequest.FullName
+                });
 
-        [HttpDelete]
-        [Route("{id}")]
-        public void Delete(string id)
-        {
+                return Request.CreateResponse(HttpStatusCode.Created);
+            }
+            catch (ResourceAlreadyExistException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+            catch (InvalidBankDetailsException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
         }
     }
 }
